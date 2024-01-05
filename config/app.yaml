@@ -1,18 +1,22 @@
 app:
   port: 8081
-  name: sensor_service
+  name: sensor_streaming
+  secret_key: "oksecret!1"
 mysql:
-  host: 0.0.0.0
+  host: host.docker.internal
   port: 3306
   driver_name: mysql
   username: cabin
   password: cabinpw
   charset: utf8
-  db_name: cabin
+  db_name: sensor
   max_open_connection: 5
   max_idle_connection: 2
   max_lifetime_connection: 60s
   db_migrate: false
 kafka:
-  url: 0.0.0.0
+  host: host.docker.internal
   port: 9092
+mqtt:
+  host: host.docker.internal
+  port: 1883

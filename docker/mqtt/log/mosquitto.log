@@ -1,0 +1,4 @@
+1704307989: mosquitto version 2.0.18 starting
+1704307989: Config loaded from /mosquitto/config/mosquitto.conf.
+1704307989: Error: Unable to open pwfile "/mosquitto/config/pwfile".
+1704307989: Error opening password file "/mosquitto/config/pwfile".
