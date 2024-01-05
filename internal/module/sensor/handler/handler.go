@@ -13,6 +13,13 @@ type Handler struct {
 	UseCase usecase.IUseCase
 }
 
+// @Summary Generate stream data
+// @Description stream data sensor
+// @Accept  json
+// @Produce  json
+// @Param frequency query string true "example: 2"
+// @Param data body dto.SensorDataGenerateRequest true "Stream data request"
+// @Router /api/streaming/sensor-generate [post]
 func (h Handler) GenerateStream(c echo.Context) error {
 	request, err := config.MappingRequest(c)
 	if err != nil {

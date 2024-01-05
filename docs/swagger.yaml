@@ -1,0 +1,32 @@
+definitions:
+  dto.SensorDataGenerateRequest:
+    properties:
+      ID1:
+        type: string
+      ID2:
+        type: integer
+      sensor_type:
+        type: string
+      sensor_value:
+        type: number
+    type: object
+info:
+  contact: {}
+paths:
+  /api/streaming/sensor-generate:
+    post:
+      consumes:
+      - application/json
+      description: stream data sensor
+      parameters:
+      - description: Stream data request
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.SensorDataGenerateRequest'
+      produces:
+      - application/json
+      responses: {}
+      summary: Generate stream data
+swagger: "2.0"

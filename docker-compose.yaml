@@ -1,0 +1,36 @@
+version: '3'
+
+# Define services
+services:
+  # App Service
+  app:
+    # Configuration for building the docker image for the service
+    build:
+      context: . # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: unless-stopped
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+    depends_on:
+      - mqtt5
+
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - ./docker/mqtt/config:/mosquitto/config:rw
+      - ./docker/mqtt/data:/mosquitto/data:rw
+      - ./docker/mqtt/log:/mosquitto/log:rw
+
+volumes:
+  config:
+  data:
+  log:
+
+networks:
+  backend:
