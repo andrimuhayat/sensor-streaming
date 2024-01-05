@@ -1,0 +1,51 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/streaming/sensor-generate": {
+            "post": {
+                "description": "stream data sensor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Generate stream data",
+                "parameters": [
+                    {
+                        "description": "Stream data request",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SensorDataGenerateRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "dto.SensorDataGenerateRequest": {
+            "type": "object",
+            "properties": {
+                "ID1": {
+                    "type": "string"
+                },
+                "ID2": {
+                    "type": "integer"
+                },
+                "sensor_type": {
+                    "type": "string"
+                },
+                "sensor_value": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
