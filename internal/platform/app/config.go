@@ -22,7 +22,13 @@ type Config struct {
 		DbMigrate             bool          `mapstructure:"db_migrate"`
 	} `mapstructure:"mysql"`
 	Kafka struct {
-		Url  string `mapstructure:"url"`
+		Host string `mapstructure:"url"`
 		Port string `mapstructure:"port"`
 	} `mapstructure:"kafka"`
+	Mqtt struct {
+		Username string `mapstructure:"username"`
+		Password string `mapstructure:"password"`
+		Host     string `mapstructure:"Host"`
+		Port     string `mapstructure:"port"`
+	} `mapstructure:"mqtt"`
 }
