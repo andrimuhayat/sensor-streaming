@@ -12,7 +12,7 @@ func StartService(dependency module.Dependency, router *echo.Echo) {
 	//init repo
 	dependency.SensorRepository = repository.NewRepository(dependency.DB)
 	//init usecase
-	dependency.SensorUseCase = usecase.NewUseCase(dependency.SensorRepository)
+	dependency.SensorUseCase = usecase.NewUseCase(dependency.SensorRepository, dependency.MqttClient)
 	// define handler
 	sensorHandler := handler.NewHandler(dependency.SensorUseCase)
 	//init route
