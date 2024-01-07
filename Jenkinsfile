@@ -45,7 +45,6 @@ pipeline {
                 expression { return env.GIT_BRANCH == "origin/dev" }
             }
             steps{
-                sh "sed -i 's/${env.IMAGE_NAME}-dev:latest/${env.IMAGE_NAME}-dev:${env.BUILD_ID}/g' deployment-dev.yaml"
                 sh "kubectl apply -f deployment-dev.yaml"
             }
         }
@@ -55,7 +54,6 @@ pipeline {
                 expression { return env.GIT_BRANCH == "origin/prod" }
             }
             steps{
-                sh "sed -i 's/${env.IMAGE_NAME}-prod:latest/${env.IMAGE_NAME}-prod:${env.BUILD_ID}/g' deployment-prod.yaml"
                 sh "kubectl apply -f deployment-prod.yaml"
             }
         }
