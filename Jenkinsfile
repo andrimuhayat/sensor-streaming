@@ -33,7 +33,7 @@ pipeline {
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://gcr.io', 'gcr:leu-gcr') {
+                    docker.withRegistry('https://gcr.io', 'leu-gcr') {
                             myapp.push("latest")
                             myapp.push("${env.BUILD_ID}")
                     }
