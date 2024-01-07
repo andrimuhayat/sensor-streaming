@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-streaming
+  namespace: iot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sensor-streaming
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: sensor-streaming
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: sensor-streaming
+          image: asia.gcr.io/leu-indonesia/sensor-streaming-dev:latest
+          ports:
+            - containerPort: 8080
+#          readinessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8080
+#            timeoutSeconds: 1
+#            initialDelaySeconds: 1
+#            periodSeconds: 120
+#            successThreshold: 1
+#            failureThreshold: 1
