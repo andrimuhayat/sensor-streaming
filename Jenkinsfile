@@ -45,7 +45,9 @@ pipeline {
                 expression { return env.GIT_BRANCH == "origin/dev" }
             }
             steps{
-                sh "kubectl apply -f deployment-dev.yaml"
+                withKubeConfig([credentialsId: 'dev-kubeconfig']) {
+                    sh "kubectl apply -f deployment-dev.yaml"
+                }
             }
         }
 
@@ -54,9 +56,12 @@ pipeline {
                 expression { return env.GIT_BRANCH == "origin/prod" }
             }
             steps{
-                sh "kubectl apply -f deployment-prod.yaml"
-            }
+                withKubeConfig([credentialsId: 'dev-kubeconfig']) {
+                    sh "kubectl apply -f deployment-dev.yaml"
+                }
+             }
         }
+
         stage('Remove Unused docker image dev') {
             when {
                 expression { return env.GIT_BRANCH == "origin/dev" }
