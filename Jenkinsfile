@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 script {
-                    myapp = docker.build("asia.gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-dev:${env.BUILD_ID}")
+                    myapp = docker.build("gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-dev:${env.BUILD_ID}")
                 }
             }
         }
@@ -26,14 +26,14 @@ pipeline {
             }
             steps {
                 script {
-                    myapp = docker.build("asia.gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-prod:${env.BUILD_ID}")
+                    myapp = docker.build("gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-prod:${env.BUILD_ID}")
                 }
             }
         }
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://asia.gcr.io', 'gcr:leu-gcr') {
+                    docker.withRegistry('https://gcr.io', 'gcr:leu-gcr') {
                             myapp.push("latest")
                             myapp.push("${env.BUILD_ID}")
                     }
@@ -67,7 +67,7 @@ pipeline {
                 expression { return env.GIT_BRANCH == "origin/dev" }
             }
             steps{
-                sh "docker rmi asia.gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-dev:${env.BUILD_ID}"
+                sh "docker rmi gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-dev:${env.BUILD_ID}"
             }
         }
 
@@ -76,7 +76,7 @@ pipeline {
                 expression { return env.GIT_BRANCH == "origin/prod" }
             }
             steps{
-                sh "docker rmi asia.gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-prod:${env.BUILD_ID}"
+                sh "docker rmi gcr.io/${env.GCR_ID}/${env.IMAGE_NAME}-prod:${env.BUILD_ID}"
             }
         }
     }
