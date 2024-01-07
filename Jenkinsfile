@@ -57,7 +57,7 @@ pipeline {
             }
             steps{
                 withKubeConfig([credentialsId: 'dev-kubeconfig']) {
-                    sh "kubectl apply -f deployment-dev.yaml"
+                    sh "kubectl apply -f deployment-prod.yaml"
                 }
              }
         }
