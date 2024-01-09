@@ -22,7 +22,7 @@ spec:
         - name: regcred
       containers:
         - name: sensor-streaming
-          image: asia.gcr.io/leu-indonesia/sensor-streaming-dev:latest
+          image: gcr.io/leu-indonesia/sensor-streaming-dev:latest
           ports:
             - containerPort: 8080
 #          readinessProbe:
