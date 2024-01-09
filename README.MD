@@ -2,6 +2,10 @@
 ### version: 1.0.0
 Sensor streming or microservice A is service that collect and generate data stream to other microservices
 
+## Software Architecture [See architecture.png](architecture.png)
+
+## ERD [See ERD.png](ERD.png)
+
 ## Code Architecture
 This service made to containerize the allcare core service make a clear separation
 of concern within the architecture with [Uncle Bob Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) interpretation.
@@ -115,6 +119,7 @@ last, set the db_migrate flag in [app.yaml](config%2Fapp.yaml) of the migration 
 ## 🏗️ How To Run
 open terminal cd to this project's root folder and run script below
 
+    swag init
     docker-compose up --build -d
 
 ## Swagger URL
