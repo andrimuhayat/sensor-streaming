@@ -19,6 +19,11 @@ paths:
       - application/json
       description: stream data sensor
       parameters:
+      - description: 'example: 2'
+        in: query
+        name: frequency
+        required: true
+        type: string
       - description: Stream data request
         in: body
         name: data

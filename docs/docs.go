@@ -27,6 +27,13 @@ const docTemplate = `{
                 "summary": "Generate stream data",
                 "parameters": [
                     {
+                        "type": "string",
+                        "description": "example: 2",
+                        "name": "frequency",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
                         "description": "Stream data request",
                         "name": "data",
                         "in": "body",
